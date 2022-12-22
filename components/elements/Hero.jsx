@@ -49,9 +49,6 @@ function Hero() {
               <Link href="/products">
                 <Button className="btn-primary">Products</Button>
               </Link>
-              <Button as="a" href="#items" variant="">
-                Items
-              </Button>
             </HStack>
           </Box>
         </motion.div>
