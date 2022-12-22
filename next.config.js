@@ -8,6 +8,7 @@ const nextConfig = {
       "images.pexel.com",
       "source.unsplash.com",
       "fakestoreapi.com",
+      "i.dummyjson.com",
     ],
   },
 };

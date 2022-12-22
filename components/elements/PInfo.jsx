@@ -7,17 +7,20 @@ import {
   GridItem,
   Heading,
   HStack,
-  Image,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import { BsCartPlus } from "react-icons/bs";
 import { motion } from "framer-motion";
 import ImageGallery from "react-image-gallery";
+import { useSelector, useDispatch } from "react-redux";
+import { addItem } from "../../store/features/cartSlice";
 // change the blue color to red from source code
 import "react-image-gallery/styles/scss/image-gallery.scss";
 
 function PInfo({ product }) {
+  const dispatch = useDispatch();
+  const { items } = useSelector((state) => state.cart);
   const images = product.images.map((img) => {
     return { original: img, thumbnail: img };
   });
@@ -61,9 +64,10 @@ function PInfo({ product }) {
                 <Button
                   className="btn-primary"
                   leftIcon={<BsCartPlus />}
-                  //   onClick={() =>
-                  //     dispatch({ type: "ADD_ITEM", payload: product })
-                  //   }
+                  onClick={() => dispatch(addItem(product))}
+                  disabled={Boolean(
+                    items.find((item) => item.id === product.id)
+                  )}
                 >
                   Add to cart
                 </Button>

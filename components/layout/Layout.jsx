@@ -3,6 +3,8 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import ScrollToTop from "react-scroll-to-top";
 import NextNProgress from "nextjs-progressbar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Layout({ children }) {
   return (
@@ -27,6 +29,7 @@ function Layout({ children }) {
         style={{ backgroundColor: "#DA0037" }}
       />
       <NextNProgress color="#DA0037" height={5} />
+      <ToastContainer />
       {children}
       <Footer />
     </>

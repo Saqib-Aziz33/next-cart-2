@@ -2,9 +2,12 @@ import { Image, Stack, Text, Button, Heading, Box } from "@chakra-ui/react";
 import { BsCartPlus } from "react-icons/bs";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useSelector, useDispatch } from "react-redux";
+import { addItem } from "../../store/features/cartSlice";
 
 function Item({ item }) {
-  function addToCart(obj) {}
+  const { items } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
   return (
     <motion.div
@@ -40,8 +43,12 @@ function Item({ item }) {
               className="btn-primary"
               leftIcon={<BsCartPlus />}
               onClick={() => {
-                addToCart(item);
+                dispatch(addItem(item));
               }}
+              // disabled={items.includes(item)}
+              disabled={Boolean(
+                items.find((product) => product.id === item.id)
+              )}
             >
               Add to cart
             </Button>
