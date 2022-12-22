@@ -12,7 +12,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function ProductPage(product) {
-  console.log(product);
   return (
     <>
       {/* seo */}

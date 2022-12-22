@@ -4,9 +4,22 @@ import Navbar from "./Navbar";
 import ScrollToTop from "react-scroll-to-top";
 import NextNProgress from "nextjs-progressbar";
 import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loadItems } from "../../store/features/cartSlice";
 import "react-toastify/dist/ReactToastify.css";
 
 function Layout({ children }) {
+  const dispatch = useDispatch();
+  // load cart items from local storeage
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("cart"));
+    if (items && items.length) {
+      dispatch(loadItems(items));
+    }
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <>
       <Head>
@@ -29,7 +42,7 @@ function Layout({ children }) {
         style={{ backgroundColor: "#DA0037" }}
       />
       <NextNProgress color="#DA0037" height={5} />
-      <ToastContainer />
+      <ToastContainer position="bottom-right" theme="dark" />
       {children}
       <Footer />
     </>
